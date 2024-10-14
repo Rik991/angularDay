@@ -1,0 +1,43 @@
+<h1 class="fw-bold text-center mb-2">Homepage</h1>
+<h2 class="text-center mt-5 mb-3">Post in evidenza</h2>
+
+<!-- prima inserzione -->
+<div class="card w-25 m-auto" *ngIf="posts[indexRandom]">
+  <div class="card-body">
+    <p class="card-id">id: {{ posts[indexRandom].id }}</p>
+    <h5 class="card-title">{{ posts[indexRandom].title }}</h5>
+    <p class="card-text">
+      {{ posts[indexRandom].body }}
+    </p>
+    <p class="card-text">tags: {{ posts[indexRandom].tags }}</p>
+    <button
+      [routerLink]="['/post-detail', posts[indexRandom].id]"
+      class="btn btn-info"
+    >
+      Details
+    </button>
+  </div>
+</div>
+
+<h2 class="text-center mt-5 mb-3">Quattro post</h2>
+
+<!-- ciclo tutti i post -->
+<div class="container d-flex gap-3">
+  <div class="card w-25" *ngFor="let one of arrayFour">
+    <div class="card-body">
+      <p class="card-id">id: {{ one.id }}</p>
+      <h5 class="card-title">{{ one.title }}</h5>
+      <p class="card-text">
+        {{ one.body }}
+      </p>
+      <button [routerLink]="['/post-detail', one.id]" class="btn btn-info">
+        Details
+      </button>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-center mt-5 mb-3">AREA SINGLE POST</h2>
+<h3 class="text-center">mostra tutti i post</h3>
+
+<app-single-post [arrayPosts]="posts"> </app-single-post>

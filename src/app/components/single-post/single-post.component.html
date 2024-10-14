@@ -1,0 +1,38 @@
+<div class="container d-flex flex-wrap gap-3">
+  <div
+    class="card w-25"
+    *ngFor="let one of arrayPosts"
+    [ngClass]="{ 'border-info': one.active }"
+  >
+    <div class="card-body">
+      <p class="card-id">id: {{ one.id }}</p>
+      <h5 class="card-title">{{ one.title }}</h5>
+      <p class="card-text">
+        {{ one.body }}
+      </p>
+      <button [routerLink]="['/post-detail', one.id]" class="btn btn-info">
+        Details
+      </button>
+      <button (click)="mostraForm(one)" class="btn btn-warning">
+        Modifica
+      </button>
+      <form *ngIf="isFormVisible">
+        <label for="titolo">Titolo</label>
+        <input
+          type="text"
+          id="titolo"
+          [(ngModel)]="postInEditing.title"
+          name="titolo"
+        />
+        <label for="body">Contenuto</label>
+        <input
+          type="text"
+          id="body"
+          [(ngModel)]="postInEditing.body"
+          name="body"
+        />
+        <button (click)="salvaForm()">Salva</button>
+      </form>
+    </div>
+  </div>
+</div>
